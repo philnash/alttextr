@@ -7,13 +7,25 @@
   --button-secondary-hover: #f2f2f2;
 
   display: grid;
-  grid-template-rows: 20px 1fr 20px;
+  grid-template-rows: auto 1fr auto;
   align-items: center;
   justify-items: center;
   min-height: 100svh;
   padding: 80px;
   gap: 64px;
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-chivo);
+}
+
+.header {
+  grid-row-start: 1;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary, #ff3276);
+  margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,10 +44,11 @@
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
+  width: 100%;
+  max-width: 800px;
 }
 
 .main ol {
-  font-family: var(--font-geist-mono);
   padding-left: 0;
   margin: 0;
   font-size: 14px;
@@ -68,10 +81,7 @@
   padding: 0 20px;
   border: none;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -102,6 +112,11 @@ a.secondary {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.footer a span {
+  position: relative;
+  top: -2px;
 }
 
 .footer img {

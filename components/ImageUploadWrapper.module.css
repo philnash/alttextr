@@ -1,0 +1,51 @@
+.form {
+  width: 100%;
+  max-width: 800px;
+}
+
+.inputGroup {
+  margin-top: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.textarea:focus {
+  border-color: #ff3276;
+  box-shadow: 0 0 0 2px rgba(255, 50, 118, 0.2);
+}
+
+.submitButton {
+  font-weight: bold;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: linear-gradient(to right, #ff3276, #f480ff);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background-position-x: 20%;
+  background-size: 150%;
+  transition: all 0.4s ease;
+}
+
+.submitButton:hover,
+.submitButton:active {
+  background-position-x: 80%;
+  /* background-color: #f480ff; */
+}
