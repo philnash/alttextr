@@ -22,7 +22,7 @@ const ImageUploadWrapper: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <ImageUploader onImageUpload={handleImageUpload} />
-      
+
       <div className={styles.inputGroup}>
         <label htmlFor="instructions" className={styles.label}>
           Instructions or Important Points:
@@ -36,11 +36,8 @@ const ImageUploadWrapper: React.FC = () => {
           className={styles.textarea}
         />
       </div>
-      
-      <button
-        type="submit"
-        className={styles.submitButton}
-      >
+
+      <button type="submit" className={styles.submitButton}>
         Submit
       </button>
     </form>

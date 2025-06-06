@@ -43,6 +43,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
       "image/*": [".jpeg", ".jpg", ".png", ".gif"],
     },
     multiple: false,
+    noClick: true,
   });
 
   // Calculate display dimensions while maintaining aspect ratio
@@ -76,25 +77,27 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
   const displayDimensions = getDisplayDimensions();
 
   return (
-    <div
-      {...getRootProps()}
-      className={`${styles.dropzone} ${isDragActive ? styles.active : ""}`}
-    >
-      <input {...getInputProps()} />
-      {preview ? (
-        <Image
-          src={preview}
-          alt="Preview"
-          className={styles.previewImage}
-          width={displayDimensions.width}
-          height={displayDimensions.height}
-          style={{ objectFit: "contain" }}
-        />
-      ) : (
-        <p>
-          Drag &apos;n&apos; drop an image here, or click to select an image
-        </p>
-      )}
+    <div className={styles.inputGroup}>
+      <label
+        {...getRootProps()}
+        className={`${styles.dropzone} ${isDragActive ? styles.active : ""}`}
+      >
+        <input {...getInputProps()} />
+        {preview ? (
+          <Image
+            src={preview}
+            alt="Preview"
+            className={styles.previewImage}
+            width={displayDimensions.width}
+            height={displayDimensions.height}
+            style={{ objectFit: "contain" }}
+          />
+        ) : (
+          <p>
+            Drag &apos;n&apos; drop an image here, or click to select an image
+          </p>
+        )}
+      </label>
     </div>
   );
 };
