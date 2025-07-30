@@ -1,5 +1,5 @@
 .dropzone {
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--color-primary-transparent-2);
   border-radius: 4px;
   padding: 20px;
   text-align: center;
@@ -9,10 +9,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-primary-transparent-05);
 }
 
 .dropzone.active {
-  border-color: #ff3276;
+  border-color: var(--color-primary);
 }
 
 .previewImage {

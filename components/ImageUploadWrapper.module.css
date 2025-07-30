@@ -17,24 +17,29 @@
   font-family: var(--font-chivo);
   width: 100%;
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-primary-transparent-2);
   border-radius: 4px;
   font-size: 14px;
   resize: vertical;
   outline: none;
   transition: border-color 0.2s ease;
+  background-color: var(--color-primary-transparent-05);
 }
 
 .textarea:focus {
-  border-color: #ff3276;
-  box-shadow: 0 0 0 2px rgba(255, 50, 118, 0.2);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-transparent-2);
 }
 
 .submitButton {
   font-family: var(--font-chivo);
   font-weight: bold;
   padding: 10px 20px;
-  background: linear-gradient(to right, #ff3276, #f480ff);
+  background: linear-gradient(
+    to right,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   color: white;
   border: none;
   border-radius: 4px;
@@ -48,11 +53,10 @@
 .submitButton:hover,
 .submitButton:active {
   background-position-x: 80%;
-  /* background-color: #f480ff; */
 }
 
 .submitButton:disabled {
-  background: #ccc;
+  background: var(--color-border);
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -60,20 +64,20 @@
 .error {
   margin-top: 16px;
   padding: 12px;
-  background-color: #fee;
-  border: 1px solid #fcc;
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
   border-radius: 4px;
-  color: #c33;
+  color: var(--color-error);
 }
 
 .result {
   margin-top: 16px;
   padding: 12px 16px 16px;
-  background-color: rgba(255, 50, 118, 0.05);
-  border: 1px solid rgba(255, 50, 118, 0.2);
+  background-color: var(--color-primary-transparent-05);
+  border: 1px solid var(--color-primary-transparent-2);
   border-radius: 4px;
   color: var(--foreground);
-  box-shadow: 0 2px 10px rgba(255, 50, 118, 0.1);
+  box-shadow: 0 2px 10px var(--color-primary-transparent-1);
   transition: all 0.3s ease;
   position: relative;
 }
@@ -85,8 +89,8 @@
   padding: 8px;
   width: 36px;
   height: 36px;
-  color: #ff3276;
-  border: 1px solid rgba(255, 50, 118, 0.3);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-transparent-3);
   border-radius: 2px;
   font-size: 14px;
   cursor: pointer;
@@ -94,17 +98,17 @@
   position: absolute;
   top: 2px;
   right: 2px;
-  background-color: rgba(255, 50, 118, 0.1);
+  background-color: var(--color-primary-transparent-1);
 }
 
 .copyButton:hover {
-  background-color: rgba(255, 50, 118, 0.3);
-  border-color: #ff3276;
+  background-color: var(--color-primary-transparent-3);
+  border-color: var(--color-primary);
 }
 
 .result h3 {
   margin: 0 0 12px 0;
-  color: #ff3276;
+  color: var(--color-primary);
   font-weight: bold;
 }
 
@@ -125,8 +129,8 @@
   font-weight: bold;
   padding: 10px 20px;
   background-color: white;
-  color: #555;
-  border: 1px solid #ccc;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
@@ -135,13 +139,13 @@
 
 .clearButton:hover,
 .clearButton:active {
-  background-color: #f5f5f5;
-  border-color: #aaa;
+  background-color: var(--color-background-light);
+  border-color: var(--color-border-dark);
 }
 
 .clearButton:disabled {
-  color: #ccc;
-  background-color: #f9f9f9;
+  color: var(--color-border);
+  background-color: var(--color-background-lighter);
   cursor: not-allowed;
   opacity: 0.6;
 }
