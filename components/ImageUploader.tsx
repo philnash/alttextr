@@ -1,25 +1,37 @@
 "use client";
-import React, { useState, useCallback } from "react";
-import Image from "next/image"; // Import next/image
+import React, { useCallback } from "react";
+import Image from "next/image";
 import { useDropzone } from "react-dropzone";
 import styles from "./ImageUploader.module.css";
 
 interface ImageUploaderProps {
   onImageUpload: (file: File) => void;
+  preview: string | null;
+  imageDimensions: { width: number; height: number } | null;
+  setPreview: (preview: string | null) => void;
+  setImageDimensions: (
+    dimensions: { width: number; height: number } | null
+  ) => void;
 }
 
-const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
-  const [preview, setPreview] = useState<string | null>(null);
-  const [imageDimensions, setImageDimensions] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
-
+const ImageUploader: React.FC<ImageUploaderProps> = ({
+  onImageUpload,
+  preview,
+  imageDimensions,
+  setPreview,
+  setImageDimensions,
+}) => {
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
         const file = acceptedFiles[0];
         onImageUpload(file);
+
+        // Clean up previous preview URL if it exists
+        if (preview) {
+          URL.revokeObjectURL(preview);
+        }
+
         const objectUrl = URL.createObjectURL(file);
         setPreview(objectUrl);
 
@@ -34,7 +46,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
         imgElement.src = objectUrl;
       }
     },
-    [onImageUpload]
+    [onImageUpload, preview, setPreview, setImageDimensions]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

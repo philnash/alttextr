@@ -10,6 +10,11 @@ const ImageUploadWrapper: React.FC = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isPending, startTransition] = useTransition();
   const [copyButtonText, setcopyButtonText] = useState<string>("default");
+  const [preview, setPreview] = useState<string | null>(null);
+  const [imageDimensions, setImageDimensions] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
   const [result, setResult] = useState<{
     success: boolean;
     message?: string;
@@ -47,6 +52,20 @@ const ImageUploadWrapper: React.FC = () => {
     });
   };
 
+  const handleClear = () => {
+    setUploadedFile(null);
+    setResult(null);
+    setInstructions("");
+    setcopyButtonText("default");
+
+    // Clean up the preview URL and reset the state
+    if (preview) {
+      URL.revokeObjectURL(preview);
+      setPreview(null);
+      setImageDimensions(null);
+    }
+  };
+
   const copyToClipboard = async () => {
     if (result?.altText) {
       try {
@@ -62,7 +81,13 @@ const ImageUploadWrapper: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <ImageUploader onImageUpload={handleImageUpload} />
+      <ImageUploader
+        onImageUpload={handleImageUpload}
+        preview={preview}
+        imageDimensions={imageDimensions}
+        setPreview={setPreview}
+        setImageDimensions={setImageDimensions}
+      />
 
       <div className={styles.inputGroup}>
         <label htmlFor="instructions" className={styles.label}>
@@ -78,13 +103,23 @@ const ImageUploadWrapper: React.FC = () => {
         />
       </div>
 
-      <button
-        type="submit"
-        className={styles.submitButton}
-        disabled={isPending || !uploadedFile}
-      >
-        {isPending ? "Uploading..." : "Submit"}
-      </button>
+      <div className={styles.buttonGroup}>
+        <button
+          type="submit"
+          className={styles.submitButton}
+          disabled={isPending || !uploadedFile}
+        >
+          {isPending ? "Uploading..." : "Submit"}
+        </button>
+        <button
+          type="button"
+          onClick={handleClear}
+          className={styles.clearButton}
+          disabled={isPending || (!uploadedFile && !result && !instructions)}
+        >
+          Clear
+        </button>
+      </div>
 
       {!isPending && result && !result.success && (
         <div className={styles.error}>
