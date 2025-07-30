@@ -14,6 +14,7 @@
 }
 
 .textarea {
+  font-family: var(--font-chivo);
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -30,6 +31,7 @@
 }
 
 .submitButton {
+  font-family: var(--font-chivo);
   font-weight: bold;
   margin-top: 16px;
   padding: 10px 20px;
@@ -48,4 +50,42 @@
 .submitButton:active {
   background-position-x: 80%;
   /* background-color: #f480ff; */
+}
+
+.submitButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.error {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c33;
+}
+
+.result {
+  margin-top: 16px;
+  padding: 16px;
+  background-color: rgba(255, 50, 118, 0.05);
+  border: 1px solid rgba(255, 50, 118, 0.2);
+  border-radius: 4px;
+  color: var(--foreground);
+  box-shadow: 0 2px 10px rgba(255, 50, 118, 0.1);
+  transition: all 0.3s ease;
+}
+
+.result h3 {
+  margin: 0 0 12px 0;
+  color: #ff3276;
+  font-weight: bold;
+}
+
+.result p {
+  margin: 4px 0;
+  font-size: 14px;
+  line-height: 1.5;
 }

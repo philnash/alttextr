@@ -1,22 +1,48 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import ImageUploader from "./ImageUploader";
+import { uploadImageAction } from "../src/app/actions/upload";
 import styles from "./ImageUploadWrapper.module.css";
 
 const ImageUploadWrapper: React.FC = () => {
   const [instructions, setInstructions] = useState("");
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [isPending, startTransition] = useTransition();
+  const [result, setResult] = useState<{
+    success: boolean;
+    message?: string;
+    error?: string;
+    fileInfo?: {
+      name: string;
+      type: string;
+      size: number;
+      lastModified: number;
+    };
+    instructions?: string;
+    altText?: string;
+  } | null>(null);
 
   const handleImageUpload = (file: File) => {
-    console.log("Uploaded image:", file);
     setUploadedFile(file);
-    // Handle the image file (e.g., upload to server, display preview)
+    setResult(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", { file: uploadedFile, instructions });
-    // Handle form submission logic here
+
+    if (!uploadedFile) {
+      setResult({ success: false, error: "Please select an image file" });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", uploadedFile);
+    formData.append("instructions", instructions);
+
+    startTransition(async () => {
+      const result = await uploadImageAction(formData);
+      setResult(result);
+    });
   };
 
   return (
@@ -37,9 +63,26 @@ const ImageUploadWrapper: React.FC = () => {
         />
       </div>
 
-      <button type="submit" className={styles.submitButton}>
-        Submit
+      <button
+        type="submit"
+        className={styles.submitButton}
+        disabled={isPending || !uploadedFile}
+      >
+        {isPending ? "Uploading..." : "Submit"}
       </button>
+
+      {!isPending && result && !result.success && (
+        <div className={styles.error}>
+          <strong>Error:</strong> {result.error}
+        </div>
+      )}
+
+      {!isPending && result && result.success && (
+        <div className={styles.result}>
+          <h3>Generated Alt Text</h3>
+          <p>{result.altText}</p>
+        </div>
+      )}
     </form>
   );
 };
