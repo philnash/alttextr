@@ -34,12 +34,6 @@ export async function uploadImageAction(formData: FormData) {
       };
     }
 
-    // Convert file to buffer for processing
-    // const bytes = await imageFile.arrayBuffer();
-    // const buffer = Buffer.from(bytes);
-
-    // Here you can process the image and instructions
-    // For example, save to filesystem, upload to cloud storage, or send to AI service
     const upload = await flow.uploadFile(imageFile);
     const response = await flow.run(instructions ?? "", {
       tweaks: {
@@ -49,16 +43,8 @@ export async function uploadImageAction(formData: FormData) {
       },
     });
 
-    // Return success response with file information
     return {
       success: true,
-      message: "File uploaded successfully",
-      fileInfo: {
-        name: imageFile.name,
-        type: imageFile.type,
-        size: imageFile.size,
-        lastModified: imageFile.lastModified,
-      },
       instructions: instructions?.trim(),
       altText: response.chatOutputText(),
     };

@@ -31,34 +31,54 @@
   box-shadow: 0 0 0 2px var(--color-primary-transparent-2);
 }
 
-.submitButton {
-  font-family: var(--font-chivo);
-  font-weight: bold;
-  padding: 10px 20px;
-  background: linear-gradient(
-    to right,
-    var(--color-primary),
-    var(--color-secondary)
-  );
-  color: white;
-  border: none;
+.button {
+    font-family: var(--font-chivo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-transparent-3);
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  background-position-x: 20%;
-  background-size: 150%;
-  transition: all 0.4s ease;
+  transition: all 0.2s ease;
+  position: relative;
+  background-color: var(--color-primary-transparent-1);
+  padding: 8px 20px;
 }
 
-.submitButton:hover,
-.submitButton:active {
-  background-position-x: 80%;
+.button:hover {
+  background-color: var(--color-primary-transparent-2);
+  border-color: var(--color-primary);
 }
 
 .submitButton:disabled {
   background: var(--color-border);
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.clearButton {
+  background-color: var(--color-background-lighter);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.clearButton:hover,
+.clearButton:active {
+  background-color: var(--color-background-lighter);
+  border-color: var(--color-border-dark);
+}
+
+.copyButton {
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+  color: var(--color-primary);
+  border-radius: 2px; 
+  position: absolute;
+  top: 2px;
+  right: 2px;
 }
 
 .error {
@@ -82,30 +102,6 @@
   position: relative;
 }
 
-.copyButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  width: 36px;
-  height: 36px;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary-transparent-3);
-  border-radius: 2px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background-color: var(--color-primary-transparent-1);
-}
-
-.copyButton:hover {
-  background-color: var(--color-primary-transparent-3);
-  border-color: var(--color-primary);
-}
-
 .result h3 {
   margin: 0 0 12px 0;
   color: var(--color-primary);
@@ -124,28 +120,3 @@
   margin-top: 16px;
 }
 
-.clearButton {
-  font-family: var(--font-chivo);
-  font-weight: bold;
-  padding: 10px 20px;
-  background-color: white;
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.clearButton:hover,
-.clearButton:active {
-  background-color: var(--color-background-light);
-  border-color: var(--color-border-dark);
-}
-
-.clearButton:disabled {
-  color: var(--color-border);
-  background-color: var(--color-background-lighter);
-  cursor: not-allowed;
-  opacity: 0.6;
-}

@@ -17,14 +17,7 @@ const ImageUploadWrapper: React.FC = () => {
   } | null>(null);
   const [result, setResult] = useState<{
     success: boolean;
-    message?: string;
     error?: string;
-    fileInfo?: {
-      name: string;
-      type: string;
-      size: number;
-      lastModified: number;
-    };
     instructions?: string;
     altText?: string;
   } | null>(null);
@@ -92,7 +85,7 @@ const ImageUploadWrapper: React.FC = () => {
       <div className={styles.buttonGroup}>
         <button
           type="submit"
-          className={styles.submitButton}
+          className={`${styles.submitButton} ${styles.button}`}
           disabled={isPending || !uploadedFile}
         >
           {isPending ? "Uploading..." : "Submit"}
@@ -100,8 +93,7 @@ const ImageUploadWrapper: React.FC = () => {
         <button
           type="button"
           onClick={handleClear}
-          className={styles.clearButton}
-          disabled={isPending || (!uploadedFile && !result && !instructions)}
+          className={`${styles.clearButton} ${styles.button}`}
         >
           Clear
         </button>
