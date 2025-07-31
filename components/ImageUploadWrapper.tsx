@@ -5,6 +5,7 @@ import ImageUploader from "./ImageUploader";
 import CopyButton from "./CopyButton";
 import { uploadImageAction } from "../src/app/actions/upload";
 import styles from "./ImageUploadWrapper.module.css";
+import pageStyles from "../src/app/page.module.css";
 
 const ImageUploadWrapper: React.FC = () => {
   const [instructions, setInstructions] = useState("");
@@ -18,7 +19,6 @@ const ImageUploadWrapper: React.FC = () => {
   const [result, setResult] = useState<{
     success: boolean;
     error?: string;
-    instructions?: string;
     altText?: string;
   } | null>(null);
 
@@ -58,6 +58,13 @@ const ImageUploadWrapper: React.FC = () => {
     }
   };
 
+  const handleEdit = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setResult((prevState) => {
+      if (!prevState) return prevState;
+      return { ...prevState, altText: e.target.value || "" };
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <ImageUploader
@@ -70,7 +77,7 @@ const ImageUploadWrapper: React.FC = () => {
 
       <div className={styles.inputGroup}>
         <label htmlFor="instructions" className={styles.label}>
-          Instructions or important points:
+          Instructions, important information, or context for the image:
         </label>
         <textarea
           id="instructions"
@@ -108,9 +115,46 @@ const ImageUploadWrapper: React.FC = () => {
       {!isPending && result && result.success && (
         <div className={styles.result}>
           <h3>Generated Alt Text</h3>
-
-          <p>{result.altText}</p>
-          <CopyButton textToCopy={result.altText || ""} />
+          <div className={styles.resultTextArea}>
+            <textarea
+              onChange={handleEdit}
+              className={styles.textarea}
+              value={result.altText}
+              rows={4}
+            ></textarea>
+            <CopyButton textToCopy={result.altText || ""} />
+          </div>
+          <p>
+            Check the text and edit it until you are happy. Or update the
+            instructions above and generate the text again. See the following
+            links for tips on how to write good alt text:
+          </p>
+          <ul>
+            <li>
+              <a
+                className={pageStyles.primary}
+                href="https://developers.google.com/tech-writing/accessibility/self-study/write-alt-text"
+              >
+                Write helpful alt text (Google)
+              </a>
+            </li>
+            <li>
+              <a
+                className={pageStyles.primary}
+                href="https://webaim.org/techniques/alttext/"
+              >
+                Alternative Text (WebAIM)
+              </a>
+            </li>
+            <li>
+              <a
+                className={pageStyles.primary}
+                href="https://abilitynet.org.uk/resources/digital-accessibility/five-golden-rules-compliant-alt-text"
+              >
+                Five Golden Rules for Compliant Alt Text (AbilityNet)
+              </a>
+            </li>
+          </ul>
         </div>
       )}
     </form>

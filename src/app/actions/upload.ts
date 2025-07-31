@@ -45,7 +45,6 @@ export async function uploadImageAction(formData: FormData) {
 
     return {
       success: true,
-      instructions: instructions?.trim(),
       altText: response.chatOutputText(),
     };
   } catch (error) {
