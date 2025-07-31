@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Alt text generator
 
-## Getting Started
+This is a Next.js application that generates alt text for images that you upload. It's powered by [Langflow](https://www.langflow.org/) and [OpenAI's gpt-4.0-mini](https://platform.openai.com/docs/models/gpt-4o-mini).
 
-First, run the development server:
+## What you'll need
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+You will need Langflow installed and running. You can either install [Langflow Desktop](https://www.langflow.org/desktop) or follow [these alternative installation instructions](https://docs.langflow.org/get-started-installation).
+
+You will also need:
+
+- Node.js
+- An OpenAI API key
+
+## Set up Langflow
+
+Start up Langflow and choose to upload a flow (in the Projects section).
+
+Upload the [Langflow JSON file](./langflow/Alt%20text%20generator.json). Open the flow and add your OpenAI API key to the Language Model component and then build the flow to ensure it's all working correctly.
+
+## Running the app
+
+Start by cloning the app from GitHub:
+
+```
+git clone https://github.com/philnash/alt-text-generator.git
+cd alt-text-generator
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install the dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy the `.env.example` file to `.env`:
 
-## Learn More
+```
+cp .env.example .env
+```
 
-To learn more about Next.js, take a look at the following resources:
+Fill in the credentials in the `.env` file. You need:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- The URL where Langflow is running (this is `http://localhost:7860` by default)
+- A Langflow API key (optional, if you have authentication set up for Langflow)
+- The flow ID, which can be found by clicking the _Share_ button in the flow canvas, then API access. The flow ID is the string in the URL `http://localhost:7861/api/v1/run/FLOW_ID`
+- The Chat Input ID, which can be found by clicking on the chat input component and then clicking the _Controls_ button. The ID is next to the **Chat Input** title
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Start the application with:
 
-## Deploy on Vercel
+```
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How does it work?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+When you add an image to the page you can submit the form, this uses a [Next.js Server Function](https://nextjs.org/docs/app/getting-started/updating-data#what-are-server-functions) to upload the image and any other data to the server.
+
+This is handled by the [`uploadImageAction`](./src/app/actions/upload.ts) which uses the [Langflow API client](https://npmjs.com/package/@datastax/langflow-client) to send the data to the Langflow API. First, the image is uploaded to the [files/v1 API endpoint](https://docs.langflow.org/api-files#upload-image-files-v1). Then, we run the flow using the [/run endpoint](https://docs.langflow.org/api-flows-run), passing the instructions as the chat input and using a [tweak](https://docs.langflow.org/concepts-publish#input-schema) to set the file path of the image we just uploaded.
+
+The flow runs and returns the suggested alt text which is returned to the front end and the state is updated, rendering the suggestion.
