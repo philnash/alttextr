@@ -1,10 +1,10 @@
 # AI Alt text generator
 
-This is a Next.js application that generates alt text for images that you upload. It's powered by [Langflow](https://www.langflow.org/) and [OpenAI's gpt-4.0-mini](https://platform.openai.com/docs/models/gpt-4o-mini).
+This is a Next.js application that generates alt text for images that you upload. It's powered by [Langflow](https://www.langflow.org/?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr) and [OpenAI's gpt-4.0-mini](https://platform.openai.com/docs/models/gpt-4o-mini).
 
 ## What you'll need
 
-You will need Langflow installed and running. You can either install [Langflow Desktop](https://www.langflow.org/desktop) or follow [these alternative installation instructions](https://docs.langflow.org/get-started-installation).
+You will need Langflow installed and running. You can either install [Langflow Desktop](https://www.langflow.org/desktop?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr) or follow [these alternative installation instructions](https://docs.langflow.org/get-started-installation?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr).
 
 You will also need:
 
@@ -55,6 +55,6 @@ npm run dev
 
 When you add an image to the page you can submit the form, this uses a [Next.js Server Function](https://nextjs.org/docs/app/getting-started/updating-data#what-are-server-functions) to upload the image and any other data to the server.
 
-This is handled by the [`uploadImageAction`](./src/app/actions/upload.ts) which uses the [Langflow API client](https://npmjs.com/package/@datastax/langflow-client) to send the data to the Langflow API. First, the image is uploaded to the [files/v1 API endpoint](https://docs.langflow.org/api-files#upload-image-files-v1). Then, we run the flow using the [/run endpoint](https://docs.langflow.org/api-flows-run), passing the instructions as the chat input and using a [tweak](https://docs.langflow.org/concepts-publish#input-schema) to set the file path of the image we just uploaded.
+This is handled by the [`uploadImageAction`](./src/app/actions/upload.ts) which uses the [Langflow API client](https://npmjs.com/package/@datastax/langflow-client) to send the data to the Langflow API. First, the image is uploaded to the [files/v1 API endpoint](https://docs.langflow.org/api-files?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr#upload-image-files-v1). Then, we run the flow using the [/run endpoint](https://docs.langflow.org/api-flows-run?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr), passing the instructions as the chat input and using a [tweak](https://docs.langflow.org/concepts-publish?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr#input-schema) to set the file path of the image we just uploaded.
 
 The flow runs and returns the suggested alt text which is returned to the front end and the state is updated, rendering the suggestion.

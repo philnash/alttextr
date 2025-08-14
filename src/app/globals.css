@@ -41,6 +41,12 @@ a {
   text-decoration: none;
 }
 
+em {
+  font-style: normal;
+  font-weight: bold;
+  color: var(--primary);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

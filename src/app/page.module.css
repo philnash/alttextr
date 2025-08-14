@@ -27,6 +27,8 @@
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
+  --color-github-logo: #24292f;
+
   display: grid;
   grid-template-rows: auto 1fr auto;
   align-items: top;
@@ -34,7 +36,7 @@
   min-height: calc(100svh - 24px);
   max-height: calc(100lvh - 24px);
   overflow-y: auto;
-  padding: 80px;
+  padding: 20px 80px;
   margin: 12px;
   gap: 64px;
   font-family: var(--font-chivo);
@@ -45,22 +47,46 @@
 .header {
   grid-row-start: 1;
   text-align: center;
+  width: 100%;
   max-width: 800px;
 }
 
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
 .header h1 {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--color-primary);
   margin: 0;
   letter-spacing: -0.02em;
   line-height: 1;
-  margin-bottom: 0.5em;
+  text-align: left;
 }
 
+.header h2 {
+  font-size: 4rem;
+  font-weight: 200;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+
+.header h2 strong {
+  font-weight: 600;
+}
 .header p {
-  margin-top: 16px;
-  text-align: left;
+  font-size: 1.125rem;
+}
+
+.header svg {
+  fill: var(--color-github-logo);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -76,6 +102,8 @@
 
     --button-primary-hover: #ccc;
     --button-secondary-hover: #1a1a1a;
+
+    --color-github-logo: #fff;
   }
 }
 
@@ -98,8 +126,8 @@
   list-style-position: inside;
 }
 
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
+.main li {
+  margin-bottom: 1em;
 }
 
 .main code {

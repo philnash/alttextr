@@ -155,6 +155,18 @@ const ImageUploadWrapper: React.FC = () => {
               </a>
             </li>
           </ul>
+
+          <p>
+            <em>
+              Remember that you are responsible for the text you use on a web
+              page.
+            </em>
+          </p>
+          <p>
+            Alt text should be concise, descriptive, and tailored to the
+            image&apos;s context and function. Use clear language to convey
+            essential information and omit redundant phrases.
+          </p>
         </div>
       )}
     </form>
