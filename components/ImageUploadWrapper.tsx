@@ -87,6 +87,10 @@ const ImageUploadWrapper: React.FC = () => {
           rows={4}
           className={styles.textarea}
         />
+        <p>
+          The more detail you can add about the context the image is used in,
+          the better the generated text will be.
+        </p>
       </div>
 
       <div className={styles.buttonGroup}>
@@ -126,8 +130,15 @@ const ImageUploadWrapper: React.FC = () => {
           </div>
           <p>
             Check the text and edit it until you are happy. Or update the
-            instructions above and generate the text again. See the following
-            links for tips on how to write good alt text:
+            instructions above and try generating the text again.
+          </p>
+          <p>
+            Alt text should be concise, descriptive, and tailored to the
+            image&apos;s context and function. Use clear language to convey
+            essential information and omit redundant phrases.
+          </p>
+          <p>
+            See the following links for more tips on how to write good alt text:
           </p>
           <ul>
             <li>
@@ -161,11 +172,6 @@ const ImageUploadWrapper: React.FC = () => {
               Remember that you are responsible for the text you use on a web
               page.
             </em>
-          </p>
-          <p>
-            Alt text should be concise, descriptive, and tailored to the
-            image&apos;s context and function. Use clear language to convey
-            essential information and omit redundant phrases.
           </p>
         </div>
       )}
