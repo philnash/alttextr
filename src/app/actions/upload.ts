@@ -1,16 +1,13 @@
 "use server";
 
 import { LangflowClient } from "@datastax/langflow-client";
-
-if (!process.env.LANGFLOW_FLOW_ID) {
-  throw new Error("LANGFLOW_FLOW_ID is not set in the environment variables");
-}
+import { langflow } from "../../config";
 
 const client = new LangflowClient({
-  baseUrl: process.env.LANGFLOW_URL || "http://localhost:7860/",
-  apiKey: process.env.LANGFLOW_API_KEY,
+  baseUrl: langflow.url,
+  apiKey: langflow.apiKey,
 });
-const flow = client.flow(process.env.LANGFLOW_FLOW_ID);
+const flow = client.flow(langflow.flowId);
 
 export async function uploadImageAction(formData: FormData) {
   try {
@@ -37,7 +34,7 @@ export async function uploadImageAction(formData: FormData) {
     const upload = await flow.uploadFile(imageFile);
     const response = await flow.run(instructions ?? "", {
       tweaks: {
-        "ChatInput-13MjU": {
+        [langflow.chatInputId]: {
           files: upload.filePath,
         },
       },
