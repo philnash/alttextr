@@ -397,8 +397,8 @@
           "width": 320
         },
         "position": {
-          "x": -86.7080855212842,
-          "y": 335.0005284013511
+          "x": -227.29212377343774,
+          "y": 347.1666223981224
         },
         "selected": false,
         "type": "genericNode"
@@ -555,8 +555,8 @@
           "width": 320
         },
         "position": {
-          "x": 294.08849582748155,
-          "y": 320.3362833299895
+          "x": 204.35001644237798,
+          "y": 330.3253372046005
         },
         "selected": false,
         "type": "genericNode"
@@ -864,8 +864,8 @@
           "width": 320
         },
         "position": {
-          "x": 1041.3682191728487,
-          "y": 371.37486998366063
+          "x": 1038.9143906956028,
+          "y": 370.1479557450377
         },
         "selected": false,
         "type": "genericNode"
@@ -896,7 +896,7 @@
             ],
             "frozen": false,
             "icon": "brain-circuit",
-            "last_updated": "2025-07-31T05:57:10.745Z",
+            "last_updated": "2025-08-18T05:11:18.296Z",
             "legacy": false,
             "lf_version": "1.5.0.post1",
             "metadata": {
@@ -1168,43 +1168,129 @@
           "width": 320
         },
         "position": {
-          "x": 661.3976640939745,
-          "y": 212.5943189487335
+          "x": 631.9517223670235,
+          "y": 148.7947785403394
         },
         "selected": false,
         "type": "genericNode"
       },
       {
         "data": {
-          "id": "note-GoDm2",
+          "id": "note-FEehM",
           "node": {
-            "description": "**Insert your OpenAI API key here 👇**",
+            "description": "# Chat Input\n\nThe input receives text and images from the application and pass them onto the rest of the flow\n",
+            "display_name": "",
+            "documentation": "",
+            "template": {}
+          },
+          "type": "note"
+        },
+        "dragging": false,
+        "height": 460,
+        "id": "note-FEehM",
+        "measured": {
+          "height": 460,
+          "width": 363
+        },
+        "position": {
+          "x": -247.6337424832945,
+          "y": 191.02962749696388
+        },
+        "resizing": false,
+        "selected": false,
+        "type": "noteNode",
+        "width": 363
+      },
+      {
+        "data": {
+          "id": "note-KWNOw",
+          "node": {
+            "description": "# The Prompt Template\n\nThis takes the text input from the Chat Input component and turns it into a prompt with some additional instruction.",
             "display_name": "",
             "documentation": "",
             "template": {
-              "backgroundColor": "transparent"
+              "backgroundColor": "rose"
             }
           },
           "type": "note"
         },
         "dragging": false,
-        "id": "note-GoDm2",
+        "height": 514,
+        "id": "note-KWNOw",
         "measured": {
-          "height": 324,
-          "width": 358
+          "height": 514,
+          "width": 371
         },
         "position": {
-          "x": 659.2871275352699,
-          "y": 168.1119067841396
+          "x": 179.1857064507161,
+          "y": 156.92154348335862
         },
+        "resizing": false,
         "selected": false,
-        "type": "noteNode"
+        "type": "noteNode",
+        "width": 371
+      },
+      {
+        "data": {
+          "id": "note-EXP8N",
+          "node": {
+            "description": "# The Language Model\nThis component takes the prompt, the uploaded image, a system message that describes what the model should do and any other parameters, and passes them to gpt-4o-mini. ",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note"
+        },
+        "dragging": false,
+        "height": 800,
+        "id": "note-EXP8N",
+        "measured": {
+          "height": 800,
+          "width": 390
+        },
+        "position": {
+          "x": 597.0337084377912,
+          "y": -19.45205023641674
+        },
+        "resizing": false,
+        "selected": false,
+        "type": "noteNode",
+        "width": 390
+      },
+      {
+        "data": {
+          "id": "note-VYwXQ",
+          "node": {
+            "description": "# The Chat Output\nThis returns the message from the language model to the API. Or to the chat playground if you want to test from within the flow.",
+            "display_name": "",
+            "documentation": "",
+            "template": {}
+          },
+          "type": "note"
+        },
+        "dragging": false,
+        "height": 358,
+        "id": "note-VYwXQ",
+        "measured": {
+          "height": 358,
+          "width": 379
+        },
+        "position": {
+          "x": 1011.7729492399592,
+          "y": 201.39251271571663
+        },
+        "resizing": false,
+        "selected": false,
+        "type": "noteNode",
+        "width": 379
       }
     ],
     "viewport": {
-      "x": 23.235799722745924,
-      "y": 115.39181017820522,
-      "zoom": 0.7062500179749567
+      "x": -387.6870383355831,
+      "y": 286.81588111360315,
+      "zoom": 0.8150528932831996
     }
   },
   "description": "",
@@ -1212,6 +1298,6 @@
   "id": "5862379e-d7b8-43cd-a303-c19050aa8eed",
   "is_component": false,
   "last_tested_version": "1.5.0.post1",
-  "name": "Alt text generator",
+  "name": "Alt Text Generator",
   "tags": []
 }
