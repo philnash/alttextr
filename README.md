@@ -2,6 +2,10 @@
 
 This is a Next.js application that generates alt text for images that you upload. It's powered by [Langflow](https://www.langflow.org/?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr) and [OpenAI's gpt-4.0-mini](https://platform.openai.com/docs/models/gpt-4o-mini).
 
+You can try the application out at [https://alttextr.vercel.app/](https://alttextr.vercel.app/).
+
+![The application in action, when you select an image you can choose to add extra description or just submit. After submitting, the generated alt text is show in a textarea.](./public/example.gif)
+
 ## What you'll need
 
 You will need Langflow installed and running. You can either install [Langflow Desktop](https://www.langflow.org/desktop?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr) or follow [these alternative installation instructions](https://docs.langflow.org/get-started-installation?utm_medium=referral&utm_source=devrel&utm_campaign=alttextr).
