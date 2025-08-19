@@ -24,7 +24,15 @@ const ImageUploadWrapper: React.FC = () => {
 
   const handleImageUpload = (file: File) => {
     setUploadedFile(file);
-    setResult(null);
+    const sizeInMB = file.size / (1024 * 1024);
+    if (sizeInMB > 4) {
+      setResult({
+        success: false,
+        error: "File too large, please use files less than 4MB in size.",
+      });
+    } else {
+      setResult(null);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -65,6 +73,9 @@ const ImageUploadWrapper: React.FC = () => {
     });
   };
 
+  const uploadDisabled =
+    isPending || !uploadedFile || uploadedFile.size > 4 * 1024 * 1024;
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <ImageUploader
@@ -97,7 +108,7 @@ const ImageUploadWrapper: React.FC = () => {
         <button
           type="submit"
           className={`${styles.submitButton} ${styles.button}`}
-          disabled={isPending || !uploadedFile}
+          disabled={uploadDisabled}
         >
           {isPending ? "Uploading..." : "Submit"}
         </button>
