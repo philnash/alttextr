@@ -1,5 +1,6 @@
 "use server";
 
+import { track } from "@vercel/analytics/server";
 import { LangflowClient } from "@datastax/langflow-client";
 import { langflow } from "../../config";
 
@@ -10,6 +11,7 @@ const client = new LangflowClient({
 const flow = client.flow(langflow.flowId);
 
 export async function uploadImageAction(formData: FormData) {
+  track("upload_image");
   try {
     // Extract the image file and instructions
     const imageFile = formData.get("image") as File | null;
